@@ -1,23 +1,48 @@
 <!DOCTYPE html>
-<html xmlns:th = "http://thymeleaf.org"
-	  xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
-	  
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <head>
-  <title>Events App</title>
+	<title>Events App</title>
+	<style>
+
+	</style>
 </head>
+
 <body>
 	<h1> Cadastro de Eventos </h1>
-	<form method = "post">
-		Nome : <input type = "text" value ="" name = "nome"/>
-		Local : <input type = "text" value ="" name = "local"/>
+	<h3><a class="waves-effect waves-light btn" href="/cadastrarEvento/eventos"><i
+				class="material-icons left">format_list_bulleted</i>Lista de eventos</a></h3>
+	<form class="container" method="post">
+		Nome : <input type="text" value="" name="nome" />
+
+		<div class="row">
+			<div class="input-field col s6">
+				Local : <input type="text" value="" name="local" />
+			</div>
+			<div class="input-field col s3">
+				Date :<input type="date" id="start" name="date" value="2022-12-01" min="2022-12-01" max="2030-12-31">
+			</div>
+			<div class="input-field col s3">
+				Horario : <input type="time" value="" name="horario" />
+			</div>
+		</div>
 		
-		Date :<input type="date" id="start" name="date"
-		       value="2018-07-22"
-		       min="2018-01-01" max="2018-12-31">
-		Horario : <input type = "text" value ="" name = "horario"/>
 		
-		<button type="submit"> Salvar </button>
+
+		<button class="waves-effect waves-light btn" type="submit"> Salvar </button>
 	</form>
+
+
+	<!--JavaScript at end of body for optimized loading-->
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
 </body>
 
 </html>

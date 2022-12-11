@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
+
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+	<title>Events App</title>
+
+	<style>
+		html,
+		body {
+			height: 100%;
+
+		}
+
+		h1 {
+			text-align: center;
+			color: white;
+		}
+
+		a {
+			color: white;
+
+			text-decoration: none;
+			text-transform: uppercase;
+
+		}
+
+		h3 {
+			display: inline-block;
+			background-color: rgb(95, 73, 118);
+			border-radius: 10px;
+			margin: 30px;
+			padding: 10px;
+		}
+
+		body {
+			margin: 0;
+			background: linear-gradient(45deg, #49a09d, #5f2c82);
+			font-family: sans-serif;
+			font-weight: 100;
+		}
+
+		.container {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		table {
+			width: 80%;
+			border-collapse: collapse;
+			margin: auto;
+			overflow: hidden;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+		}
+
+		th,
+		td {
+			padding: 15px;
+			background-color: rgba(255, 255, 255, 0.2);
+			color: #fff;
+		}
+
+		th {
+			text-align: left;
+		}
+
+
+		th {
+			background-color: #55608f;
+		}
+
+		tr:hover {
+			background-color: rgba(255, 255, 255, 0.3);
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Detalhes do Evento</h1>
+	<h3><a class="waves-effect waves-light btn" href="/cadastrarEvento/eventos"><i
+				class="material-icons right">add_circle</i>Lista de Eventos</a></h3>
+	
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Local</th>
+				<th>Data</th>
+				<th>Horario</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each = "evento : ${eventos}">
+				<td><a th:href="${evento.id}"><span th:text="${evento.nome} "></span></a></td>
+				<td><span th:text="${evento.local}"></span></td>
+				<td><span th:text="${evento.date}"></span></td>
+				<td><span th:text="${evento.horario}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	
+	<form method ="post">
+		Nome: <input type = "text" value ="" name = "nome"/>
+		Rg(Registo): <input type = "text" value ="" name = "rg"/>
+		<button class ="waves-effect waves-light btn" type="submit">Adicionar</button> 
+		
+	</form>
+
+	
+
+
+	<!--JavaScript at end of body for optimized loading ///// th:href="${(#mvc.url('EC#detalahesEvento').arg(0, evento.id)).build}"-->
+	<script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+</body>
+
+</html>

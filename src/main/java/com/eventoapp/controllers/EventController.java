@@ -24,15 +24,14 @@ public class EventController {
 	@Autowired
 	private ConvidadoRepository convidadoRepository;
 
-	@GetMapping
+	@GetMapping()
 	public String form() {
 		return "Evento/formEvento";
 	}
 
 	@PostMapping
-	public String form2(Events evento) {
+	public String insertEvento(Events evento) {
 		eventsRepository.save(evento);
-
 		return "redirect:/cadastrarEvento";
 	}
 
@@ -44,20 +43,29 @@ public class EventController {
 	}
 
 	@GetMapping(value = "/{id}")
-	public ModelAndView detalhesEvento(@PathVariable Long id) {
+	public ModelAndView EventoAndConvidados(@PathVariable Long id) {
 		Optional<Events> optionalEvents = eventsRepository.findById(id);
 		Events model = optionalEvents.orElseThrow(() -> new RuntimeException("Event Not Found"));
-		ModelAndView vm = new ModelAndView("Evento/detalhesEvento");
-		return vm.addObject("eventos",model);
+		ModelAndView mv = new ModelAndView("Evento/detalhesEvento");
+		mv.addObject("eventos", model);
+		Iterable<Convidado> listaConvidadosIterable = listaConvidados(model);
+		mv.addObject("convidado", listaConvidadosIterable);
+		return mv;
 	}
-	
+
 	@PostMapping(value = "/{id}")
-	public String isertConvidado(@PathVariable Long id, Convidado convidado) {
+	public String insertConvidado(@PathVariable Long id, Convidado convidado) {
 		Optional<Events> optionalEvents = eventsRepository.findById(id);
 		Events model = optionalEvents.orElseThrow(() -> new RuntimeException("Event Not Found"));
 		convidado.setEventos(model);
 		convidadoRepository.save(convidado);
 		return "redirect:/cadastrarEvento/{id}";
 	}
+
+	public Iterable<Convidado> listaConvidados(Events event) {
+		Iterable<Convidado> list = convidadoRepository.findByEventos(event);
+		return list;
+	}
+
 
 }

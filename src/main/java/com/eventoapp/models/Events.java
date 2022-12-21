@@ -78,6 +78,12 @@ public class Events implements Serializable {
 	public void setHorario(String horario) {
 		this.horario = horario;
 	}
+
+	public Set<Convidado> getConvidadoList() {
+		return convidadoList;
+	}
+
+
 	
 	
 

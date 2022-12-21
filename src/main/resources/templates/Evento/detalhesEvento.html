@@ -117,6 +117,24 @@
 		<button class ="waves-effect waves-light btn" type="submit">Adicionar</button> 
 		
 	</form>
+	
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Nome</th>
+				<th>Rg</th>
+
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each = "c : ${convidado}">
+				<td><span th:text="${c.nome}"></span></td>
+				<td><span th:text="${c.rg}"></span></td>
+			</tr>
+		</tbody>
+	</table>
 
 	
 
